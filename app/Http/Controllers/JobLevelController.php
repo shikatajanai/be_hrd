@@ -64,4 +64,28 @@ class JobLevelController extends Controller
             'message' => 'Success'
         ]);
     }
+
+    //update
+    public function update(Request $request)
+    {
+        //validate
+        $request->validate([
+            'id' => 'required',
+            'job_name' => 'required',
+            'description' => 'required'
+
+        ]);
+
+        //find
+        $jobLevel = jobLevel::find($request->id);
+        //update
+        $jobLevel->update([
+            'job_name' => $request->job_name,
+            'description' => $request->description
+        ]);
+
+        return response()->json([
+            'message' => 'Success',
+        ]);
+    }
 }

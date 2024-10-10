@@ -9,6 +9,8 @@ use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\DivisionController;
 //JobLevelController
 use App\Http\Controllers\JobLevelController;
+//JobPositionController
+use App\Http\Controllers\JobPositionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -63,7 +65,7 @@ Route::group([ 'middleware' => 'api', 'prefix' => 'division' ], function ($route
     //delete
     Route::delete('/{id}', [DivisionController::class, 'destroy']);
 });
-
+ 
 //prefix job_level
 Route::group([ 'middleware' => 'api', 'prefix' => 'job_level' ], function ($router) {
     //index
@@ -78,6 +80,23 @@ Route::group([ 'middleware' => 'api', 'prefix' => 'job_level' ], function ($rout
     Route::post('/', [JobLevelController::class, 'store']);
     //delete
     Route::delete('/{id}', [JobLevelController::class, 'destroy']);
+});
+
+//prefix job_position
+Route::group([ 'middleware' => 'api', 'prefix' => 'job_position' ], function ($router) {
+    //index
+    Route::get('/', [JobPositionController::class, 'index']);
+    //get job_position by company
+    Route::get('/company/{id}', [JobPositionController::class, 'getByCompany']);
+    //get 1 data
+    Route::get('/{id}', [JobPositionController::class, 'show']);
+    //edit
+    Route::post('/update', [JobPositionController::class, 'update']);
+    //store
+    Route::post('/', [JobPositionController::class, 'store']);
+    //delete
+    Route::delete('/{id}', [JobPositionController::class, 'destroy']);
+    
 });
 
 
