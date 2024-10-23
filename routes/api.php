@@ -11,6 +11,8 @@ use App\Http\Controllers\DivisionController;
 use App\Http\Controllers\JobLevelController;
 //JobPositionController
 use App\Http\Controllers\JobPositionController;
+//ShiftController
+use App\Http\Controllers\ShiftController;
 
 /*
 |--------------------------------------------------------------------------
@@ -96,7 +98,24 @@ Route::group([ 'middleware' => 'api', 'prefix' => 'job_position' ], function ($r
     Route::post('/', [JobPositionController::class, 'store']);
     //delete
     Route::delete('/{id}', [JobPositionController::class, 'destroy']);
-    
+
 });
+
+//prefix shift
+Route::group([ 'middleware' => 'api', 'prefix' => 'shift' ], function ($router) {
+    //index
+    Route::get('/', [ShiftController::class, 'index']);
+    //get 1 data
+    Route::get('/{id}', [ShiftController::class, 'show']);
+    //edit
+    Route::post('/update', [ShiftController::class, 'update']);
+    //store
+    Route::post('/', [ShiftController::class, 'store']);
+    //delete
+    Route::delete('/{id}', [ShiftController::class, 'destroy']);
+});
+
+
+
 
 
